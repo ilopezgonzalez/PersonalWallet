@@ -16,10 +16,6 @@
       (click)="alternarTema()"
       [attr.aria-label]="modoOscuro ? 'Activar modo claro' : 'Activar modo oscuro'"
     >
-      <span class="tema-icono">
-        {{ modoOscuro ? '☀' : '☾' }}
-      </span>
-
       <span>
         {{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}
       </span>
@@ -210,7 +206,7 @@
     [class.presupuesto-excedido]="estadoPresupuesto === 'excedido'"
   >
 
-    <div class="seccion-titulo">
+    <div class="seccion-titulo presupuesto-titulo">
 
       <div>
         <span class="etiqueta-seccion">CONTROL DE GASTOS</span>
