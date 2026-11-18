@@ -1,12 +1,10 @@
 <app-header></app-header>
 
 <main class="contenedor-principal">
-
   <!-- CABECERA -->
   <section class="titulo-pagina">
-
     <div>
-      <span class="subtitulo">FINTECH DASHBOARD</span>
+      <span class="subtitulo">DASHBOARD</span>
       <h1>Resumen económico</h1>
       <p>Controla tus ingresos, gastos y movimientos.</p>
     </div>
@@ -20,19 +18,15 @@
         {{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}
       </span>
     </button>
-
   </section>
-
 
   <!-- RESUMEN ECONÓMICO -->
   <section class="resumen-tarjetas">
-
     <!-- INGRESOS -->
     <div
       class="tarjeta resumen-ingresos"
       [class.tarjeta-pulso]="animarBalance && ultimoTipoMovimiento === 'ingreso'"
     >
-
       <div class="tarjeta-superior">
         <div class="tarjeta-icono">↗</div>
         <span class="indicador">INGRESOS</span>
@@ -42,21 +36,16 @@
 
       <h2><app-importe [valor]="totalIngresos" [destacado]="true" /></h2>
 
-      <span class="tarjeta-descripcion">
-        Dinero recibido
-      </span>
+      <span class="tarjeta-descripcion"> Dinero recibido </span>
 
       <div class="tarjeta-brillo"></div>
-
     </div>
-
 
     <!-- GASTOS -->
     <div
       class="tarjeta resumen-gastos"
       [class.tarjeta-pulso]="animarBalance && ultimoTipoMovimiento === 'gasto'"
     >
-
       <div class="tarjeta-superior">
         <div class="tarjeta-icono">↘</div>
         <span class="indicador">GASTOS</span>
@@ -66,14 +55,10 @@
 
       <h2><app-importe [valor]="totalGastos" [destacado]="true" /></h2>
 
-      <span class="tarjeta-descripcion">
-        Dinero gastado
-      </span>
+      <span class="tarjeta-descripcion"> Dinero gastado </span>
 
       <div class="tarjeta-brillo"></div>
-
     </div>
-
 
     <!-- BALANCE -->
     <div
@@ -82,7 +67,6 @@
       [class.balance-positivo]="ultimoTipoMovimiento === 'ingreso'"
       [class.balance-negativo]="ultimoTipoMovimiento === 'gasto'"
     >
-
       <div class="tarjeta-superior">
         <div class="tarjeta-icono">€</div>
         <span class="indicador">BALANCE</span>
@@ -92,22 +76,15 @@
 
       <h2><app-importe [valor]="balance" [destacado]="true" /></h2>
 
-      <span class="tarjeta-descripcion">
-        Tu situación económica
-      </span>
+      <span class="tarjeta-descripcion"> Tu situación económica </span>
 
       <div class="tarjeta-brillo"></div>
-
     </div>
-
   </section>
-
 
   <!-- NUEVO MOVIMIENTO -->
   <section class="tarjeta formulario-tarjeta">
-
     <div class="seccion-titulo">
-
       <div>
         <span class="etiqueta-seccion">GESTIÓN FINANCIERA</span>
         <h2>Nuevo movimiento</h2>
@@ -115,14 +92,10 @@
       </div>
 
       <span class="formulario-icono">＋</span>
-
     </div>
 
-
     <div class="formulario">
-
       <div class="campo">
-
         <label for="concepto">Concepto</label>
 
         <input
@@ -132,12 +105,9 @@
           placeholder="Ej. Compra supermercado"
           (keyup.enter)="agregarMovimiento()"
         />
-
       </div>
 
-
       <div class="campo">
-
         <label for="cantidad">Cantidad (€)</label>
 
         <input
@@ -149,16 +119,12 @@
           placeholder="Ej. 50"
           (keyup.enter)="agregarMovimiento()"
         />
-
       </div>
 
-
       <div class="campo">
-
         <span class="etiqueta-campo" id="etiqueta-tipo">Tipo de movimiento</span>
 
         <div class="segmentado" role="group" aria-labelledby="etiqueta-tipo">
-
           <button
             type="button"
             class="segmento segmento-ingreso"
@@ -178,25 +144,15 @@
           >
             ↘ Gasto
           </button>
-
         </div>
-
       </div>
 
-
-      <button
-        class="btn-anadir"
-        (click)="agregarMovimiento()"
-        [disabled]="animandoInsercion"
-      >
+      <button class="btn-anadir" (click)="agregarMovimiento()" [disabled]="animandoInsercion">
         <span>＋</span>
         Añadir movimiento
       </button>
-
     </div>
-
   </section>
-
 
   <!-- PRESUPUESTO MENSUAL -->
   <section
@@ -205,9 +161,7 @@
     [class.presupuesto-alerta]="estadoPresupuesto === 'alerta'"
     [class.presupuesto-excedido]="estadoPresupuesto === 'excedido'"
   >
-
     <div class="seccion-titulo presupuesto-titulo">
-
       <div>
         <span class="etiqueta-seccion">CONTROL DE GASTOS</span>
         <h2>Presupuesto mensual</h2>
@@ -225,14 +179,10 @@
           placeholder="Ej. 1000"
         />
       </div>
-
     </div>
 
-
     @if (limiteValido > 0) {
-
       <div class="presupuesto-resumen">
-
         <div class="presupuesto-cifras">
           <strong><app-importe [valor]="totalGastos" /></strong>
           <span>de <app-importe [valor]="limiteValido" /> gastados</span>
@@ -240,12 +190,17 @@
 
         <span class="presupuesto-estado">
           @switch (estadoPresupuesto) {
-            @case ('ok') { En orden }
-            @case ('alerta') { Cerca del límite }
-            @default { Límite superado }
+            @case ('ok') {
+              En orden
+            }
+            @case ('alerta') {
+              Cerca del límite
+            }
+            @default {
+              Límite superado
+            }
           }
         </span>
-
       </div>
 
       <div
@@ -254,61 +209,43 @@
         aria-label="Presupuesto mensual consumido"
         aria-valuemin="0"
         aria-valuemax="100"
-        [attr.aria-valuenow]="porcentajePresupuesto | number:'1.0-0'"
+        [attr.aria-valuenow]="porcentajePresupuesto | number: '1.0-0'"
       >
         <div class="presupuesto-relleno" [style.width.%]="anchoBarraPresupuesto"></div>
       </div>
 
       <div class="presupuesto-pie">
-
-        <span>{{ porcentajePresupuesto | number:'1.0-0' }}% consumido</span>
+        <span>{{ porcentajePresupuesto | number: '1.0-0' }}% consumido</span>
 
         @if (restantePresupuesto >= 0) {
           <span>Te quedan <app-importe [valor]="restantePresupuesto" /></span>
         } @else {
           <span>Te has pasado <app-importe [valor]="-restantePresupuesto" /></span>
         }
-
       </div>
-
     } @else {
-
-      <p class="presupuesto-vacio">
-        Introduce un límite mayor que 0 para ver tu progreso.
-      </p>
-
+      <p class="presupuesto-vacio">Introduce un límite mayor que 0 para ver tu progreso.</p>
     }
-
   </section>
-
 
   <!-- ESTADÍSTICAS -->
   <section class="estadisticas-tarjeta">
-
     <div class="seccion-titulo">
-
       <div>
         <span class="etiqueta-seccion">ANÁLISIS</span>
         <h2>Estadísticas financieras</h2>
         <p>Visualiza y analiza tu situación económica.</p>
       </div>
 
-      <div class="estadisticas-icono">
-        ↗
-      </div>
-
+      <div class="estadisticas-icono">↗</div>
     </div>
 
-
     <div class="graficas-contenedor">
-
       <!-- GRÁFICA DE BARRAS -->
       <div class="grafica">
-
         <h3>Movimientos económicos</h3>
 
         <p class="grafica-descripcion">
-
           @if (filtroActual === 'todos') {
             Todos tus ingresos y gastos.
           } @else if (filtroActual === 'ingreso') {
@@ -316,73 +253,48 @@
           } @else {
             Detalle de tus gastos.
           }
-
         </p>
 
         <div class="canvas-contenedor">
-
           <canvas #graficaBalance></canvas>
 
           @if (movimientosFiltrados.length === 0) {
-            <div class="grafica-vacia">
-              No hay movimientos para mostrar.
-            </div>
+            <div class="grafica-vacia">No hay movimientos para mostrar.</div>
           }
-
         </div>
-
       </div>
-
 
       <!-- GRÁFICA CIRCULAR -->
       <div class="grafica">
-
         <h3>Distribución económica</h3>
 
-        <p class="grafica-descripcion">
-          Distribución individual de cada movimiento.
-        </p>
+        <p class="grafica-descripcion">Distribución individual de cada movimiento.</p>
 
         <div class="canvas-contenedor">
-
           <canvas #graficaDistribucion></canvas>
 
           @if (movimientosFiltrados.length === 0) {
-            <div class="grafica-vacia">
-              No hay movimientos para mostrar.
-            </div>
+            <div class="grafica-vacia">No hay movimientos para mostrar.</div>
           }
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
 
   <!-- HISTORIAL -->
   <section class="tarjeta historial-tarjeta">
-
     <div class="seccion-titulo">
-
       <div>
         <span class="etiqueta-seccion">ACTIVIDAD</span>
         <h2>Historial de movimientos</h2>
         <p>Consulta y filtra tus operaciones.</p>
       </div>
 
-      <div class="historial-contador">
-        {{ movimientos.length }} operaciones
-      </div>
-
+      <div class="historial-contador">{{ movimientos.length }} operaciones</div>
     </div>
-
 
     <!-- FILTROS -->
     <div class="filtros">
-
       <button
         class="btn-filtro"
         [class.activo]="filtroActual === 'todos'"
@@ -408,7 +320,6 @@
       </button>
 
       <div class="herramientas-lista">
-
         <div class="busqueda">
           <svg
             viewBox="0 0 24 24"
@@ -466,15 +377,11 @@
           </svg>
           {{ etiquetaOrden }}
         </button>
-
       </div>
-
     </div>
-
 
     <!-- LISTA DE MOVIMIENTOS -->
     <div class="lista-movimientos">
-
       <div class="cabecera">
         <span>Concepto</span>
         <span>Cantidad</span>
@@ -482,18 +389,18 @@
         <span class="cabecera-acciones">Acción</span>
       </div>
 
-
       @for (movimiento of movimientosVisibles; track movimiento.id) {
-
         <div
           class="movimiento-item"
           [class.movimiento-nuevo]="movimiento.id === ultimoMovimientoId"
-          [class.movimiento-ingreso]="movimiento.id === ultimoMovimientoId && movimiento.tipo === 'ingreso'"
-          [class.movimiento-gasto]="movimiento.id === ultimoMovimientoId && movimiento.tipo === 'gasto'"
+          [class.movimiento-ingreso]="
+            movimiento.id === ultimoMovimientoId && movimiento.tipo === 'ingreso'
+          "
+          [class.movimiento-gasto]="
+            movimiento.id === ultimoMovimientoId && movimiento.tipo === 'gasto'
+          "
         >
-
           <div class="concepto-contenedor">
-
             <span
               class="movimiento-icono"
               [class.icono-ingreso]="movimiento.tipo === 'ingreso'"
@@ -528,9 +435,7 @@
             @if (movimiento.id === ultimoMovimientoId) {
               <span class="nuevo-indicador">NUEVO</span>
             }
-
           </div>
-
 
           @if (estaEditando(movimiento.id, 'cantidad')) {
             <span class="cantidad cantidad-edicion">
@@ -562,7 +467,6 @@
             </span>
           }
 
-
           <span
             class="tipo"
             [class.ingresos]="movimiento.tipo === 'ingreso'"
@@ -570,7 +474,6 @@
           >
             {{ movimiento.tipo === 'ingreso' ? 'Ingreso' : 'Gasto' }}
           </span>
-
 
           <button
             type="button"
@@ -596,13 +499,9 @@
               <path d="M10 11v6M14 11v6" />
             </svg>
           </button>
-
         </div>
-
       } @empty {
-
         <div class="estado-vacio">
-
           <div class="estado-vacio-icono">
             <svg
               viewBox="0 0 24 24"
@@ -625,11 +524,7 @@
 
             <p>No hay movimientos cuyo concepto coincida con «{{ busqueda.trim() }}».</p>
 
-            <button
-              type="button"
-              class="btn-limpiar-filtro"
-              (click)="limpiarBusqueda()"
-            >
+            <button type="button" class="btn-limpiar-filtro" (click)="limpiarBusqueda()">
               Borrar búsqueda
             </button>
           } @else if (filtroActual === 'todos') {
@@ -639,33 +534,22 @@
             <h3>Aún no hay movimientos aquí</h3>
 
             <p>
-              No hay {{ filtroActual === 'ingreso' ? 'ingresos' : 'gastos' }} registrados.
-              Prueba a quitar el filtro para ver el resto de operaciones.
+              No hay {{ filtroActual === 'ingreso' ? 'ingresos' : 'gastos' }} registrados. Prueba a
+              quitar el filtro para ver el resto de operaciones.
             </p>
 
-            <button
-              type="button"
-              class="btn-limpiar-filtro"
-              (click)="cambiarFiltro('todos')"
-            >
+            <button type="button" class="btn-limpiar-filtro" (click)="cambiarFiltro('todos')">
               Ver todos los movimientos
             </button>
           }
-
         </div>
-
       }
-
     </div>
-
   </section>
-
 </main>
-
 
 <!-- NOTIFICACIÓN FLOTANTE -->
 @if (mostrarNotificacion) {
-
   <div
     class="notificacion-toast"
     [class.toast-ingreso]="notificacionModo === 'registro' && notificacionTipo === 'ingreso'"
@@ -680,7 +564,6 @@
     role="status"
     aria-live="polite"
   >
-
     <div class="toast-icono">
       @if (notificacionModo === 'eliminado') {
         <svg
@@ -705,14 +588,11 @@
     </div>
 
     <div class="toast-contenido">
-
       <strong>
         @if (notificacionModo === 'eliminado') {
           Movimiento eliminado
         } @else {
-          {{ notificacionTipo === 'ingreso'
-            ? '¡Ingreso registrado!'
-            : '¡Gasto registrado!' }}
+          {{ notificacionTipo === 'ingreso' ? '¡Ingreso registrado!' : '¡Gasto registrado!' }}
         }
       </strong>
 
@@ -724,22 +604,13 @@
         {{ notificacionTipo === 'ingreso' ? '+' : '-' }}
         <app-importe [valor]="notificacionCantidad" />
       </b>
-
     </div>
 
     @if (notificacionModo === 'eliminado') {
-      <button
-        type="button"
-        class="toast-deshacer"
-        (click)="deshacerEliminacion()"
-      >
-        Deshacer
-      </button>
+      <button type="button" class="toast-deshacer" (click)="deshacerEliminacion()">Deshacer</button>
     }
 
     <div class="toast-brillo"></div>
     <div class="toast-progreso"></div>
-
   </div>
-
 }
