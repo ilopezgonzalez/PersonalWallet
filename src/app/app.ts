@@ -9,7 +9,6 @@ import {
   inject,
 } from '@angular/core';
 
-import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
 import { Header } from './components/header/header';
@@ -57,7 +56,7 @@ interface MovimientoEliminado {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, FormsModule, Importe, DecimalPipe],
+  imports: [Header, FormsModule, Importe, DecimalPipe],
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
@@ -508,7 +507,9 @@ export class App implements AfterViewInit, OnDestroy {
       cambios = { cantidad };
     }
 
-    this.movimientos = this.movimientos.map((m) => (m.id === edicion.id ? { ...m, ...cambios } : m));
+    this.movimientos = this.movimientos.map((m) =>
+      m.id === edicion.id ? { ...m, ...cambios } : m,
+    );
 
     this.actualizarGraficas();
   }
