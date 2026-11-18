@@ -1,0 +1,6 @@
+.navbar {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(136, 124, 255, 0.32), transparent 45%),
+    linear-gradient(135deg, #222b51, #34316d);
+  color: white;
+}
